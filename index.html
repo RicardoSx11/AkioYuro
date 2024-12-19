@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenida Animada</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, black, purple, red);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .character-container {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: moveCharacter 10s linear infinite alternate;
+    }
+
+    @keyframes moveCharacter {
+      0% {
+        transform: translateX(10%);
+      }
+      100% {
+        transform: translateX(80%);
+      }
+    }
+
+    .character {
+      width: 100px;
+      height: 100px;
+      background: url('https://via.placeholder.com/100') no-repeat center center / cover;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+      white-space: nowrap;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .sections {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      opacity: 0;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .section {
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: linear-gradient(45deg, purple, black, red);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: scale(1.2);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 80%;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      transition: transform 0.5s ease;
+      opacity: 0;
+    }
+
+    .content.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .images-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .images-grid img:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 10px;
+      background: linear-gradient(45deg, red, purple, black);
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .community-link {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .community-link a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, purple, black, red);
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .community-link a:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.8);
+    }
+
+    .image-description {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="character-container"><img src="Akio1.png" alt="">
+    <div class="character">
+      <div class="bubble">!Hola soy akio Bienvenido a mi Pagina Oficial, Recuerda pasarte por todos los apartados de la Pagina!</div>
+    </div>
+  
+  </div>
+
+  <div class="sections">
+    <div class="section" onclick="showContent('lore')">Lore</div>
+    <div class="section" onclick="showContent('redes')">Redes</div>
+    <div class="section" onclick="showContent('comunidad')">Comunidad</div>
+  </div>
+
+  <div id="lore" class="content">
+    <h2>Lore</h2>
+    <p>¡Hola, soy Akio_YuroVT. Me conocen de diferentes maneras como Perejil, Apio, Emikuko, y más apodos que han surgido a lo largo del tiempo. Me encanta cantar, tocar instrumentos, jugar y crear contenido para entretener a todos.
+
+        Mi personaje es un demonio desterrado del inframundo que, gracias a una brecha entre los mundos, puede entrar al mundo de los humanos. Su misión es proteger a quienes lo necesitan mientras encuentra su camino.!</p>
+  </div>
+
+  <div id="redes" class="content">
+    <h2>Redes</h2>
+    <p>Receurda seguirme en todas mis redes sociales.</p>
+    <div class="social-links">
+      <a href="https://x.com/akio_vt" target="_blank">X (Twitter): @akio_vt</a>
+      <a href="https://www.twitch.tv/akio_yurovt" target="_blank">Twitch: akio_yurovt</a>
+      <a href="https://www.instagram.com/akiovt_/" target="_blank">Instagram: akiovt_</a>
+    </div>
+  </div>
+
+  <div id="comunidad" class="content">
+    <h2>Comunidad</h2>
+    <p>Únete a nuestra comunidad y conecta con personas apasionadas como tú.</p>
+    <div class="community-link">
+      <a href="https://discord.gg/Xaxuzcf9" target="_blank">Únete a nuestro Discord</a>
+    </div>
+    <div class="images-grid">
+      <div>
+        <img src="Fanart1.png" alt="Comunidad 1">
+        <p class="image-description">@Yokohatsuu🌾</p>
+      </div>
+      <div>
+        <img src="Fanart2.jpeg" alt="Comunidad 2">
+        <p class="image-description">@kibo_yurovt</p>
+      </div>
+      <div>
+        <img src="Fanart3.png" alt="Comunidad 3">
+        <p class="image-description">@Shinigami</p>
+      </div>
+      <div>
+        <img src="Fanart4.jpg" alt="Comunidad 4">
+        <p class="image-description">@Shinigami</p>
+      </div>
+      <div>
+        <img src="Fanart5.jpg" alt="Comunidad 5">
+        <p class="image-description">@Yumi_Kojin_SMKR</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showContent(sectionId) {
+      const sections = document.querySelectorAll('.content');
+      sections.forEach(section => {
+        if (section.id === sectionId) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
